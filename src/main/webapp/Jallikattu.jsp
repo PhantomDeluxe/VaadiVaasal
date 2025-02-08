@@ -197,7 +197,7 @@
         <div class="feature">
             <h3>Player & Rankings</h3>
             <p>Track the performance and rankings of participants across events.</p>
-            <a href="player_rankings.html">Learn More</a>
+            <a href="player_rankings.jsp">Learn More</a>
         </div>
         <div class="feature">
             <h3>Matches & Scoreboard</h3>
