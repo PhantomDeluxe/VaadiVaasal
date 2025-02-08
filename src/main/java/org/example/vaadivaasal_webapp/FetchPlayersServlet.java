@@ -27,7 +27,7 @@ public class FetchPlayersServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JallikattuDB", "root", "yourpassword");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JallikattuDB", "root", "Bharathi2004");
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Players");
             ResultSet rs = stmt.executeQuery();
 

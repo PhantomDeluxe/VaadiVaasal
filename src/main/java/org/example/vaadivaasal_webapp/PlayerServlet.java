@@ -4,50 +4,62 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.Collection;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
-
+@MultipartConfig // Required for handling multipart form data
 public class PlayerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // Debugging: Print received form parameters
+        Collection<Part> parts = request.getParts();
+        for (Part part : parts) {
+            System.out.println("Received part: " + part.getName());
+        }
+
+        // Retrieve form parameters
         String playerName = request.getParameter("name");
         String image = request.getParameter("image");
-        String bullValue = request.getParameter("bullsTamed");
-        int bullsTamed = (bullValue != null && !bullValue.isEmpty()) ? Integer.parseInt(bullValue) : 0;
-        String scoreParam = request.getParameter("score");
-        int score = (scoreParam != null && !scoreParam.isEmpty()) ? Integer.parseInt(scoreParam) : 0; // Default to 0 if null or empty
-        String ageParam = request.getParameter("age");
-        int age = (ageParam != null && !ageParam.isEmpty()) ? Integer.parseInt(ageParam) : 0; // Default to 0 if null or empty
+        int score = parseIntOrDefault(request.getParameter("score"), 0);
+        int bullsTamed = parseIntOrDefault(request.getParameter("bullsTamed"), 0);
+        int age = parseIntOrDefault(request.getParameter("age"), 0);
         String region = request.getParameter("region");
-        String matchValue = request.getParameter("matches"); // Get matchValue
-        int matches = (matchValue != null && !matchValue.isEmpty()) ? Integer.parseInt(matchValue) : 0; // Default to 0 if null or empty
+        int matches = parseIntOrDefault(request.getParameter("matches"), 0);
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
+        // Debugging: Log received values
+        System.out.println("Received Name: " + playerName);
+        System.out.println("Received Image: " + image);
+        System.out.println("Received Score: " + score);
+        System.out.println("Received Bulls Tamed: " + bullsTamed);
+        System.out.println("Received Age: " + age);
+        System.out.println("Received Region: " + region);
+        System.out.println("Received Matches: " + matches);
 
-        try {
-            // Load MySQL JDBC Driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        // Validate required fields
+        if (playerName == null || playerName.trim().isEmpty()) {
+            response.getWriter().write("Error: Player name cannot be null or empty");
+            return;
+        }
 
-            // Establish connection
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JallikattuDB", "root", "Bharathi2004");
+        // Establish database connection and insert data
+        String jdbcUrl = "jdbc:mysql://localhost:3306/JallikattuDB";
+        String jdbcUser = "root";
+        String jdbcPassword = "Bharathi2004";
 
-            // Insert Query
+        String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, matches) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            String name = request.getParameter("name");
+        try (Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            if (name == null || name.trim().isEmpty()) {
-                response.getWriter().write("Error: Player name cannot be null or empty");
-                return; // Stop further execution
-            }
-
-            String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, matches) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            stmt = conn.prepareStatement(sql);
+            // Set values in PreparedStatement
             stmt.setString(1, playerName);
             stmt.setString(2, image);
             stmt.setInt(3, score);
@@ -62,16 +74,84 @@ public class PlayerServlet extends HttpServlet {
             } else {
                 response.getWriter().write("Failed");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             response.getWriter().write("Error: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Debugging: Print received form parameters
+        Collection<Part> parts = request.getParts();
+        for (Part part : parts) {
+            System.out.println("Received part: " + part.getName());
+        }
+
+        // Retrieve form parameters
+        String playerName = request.getParameter("name");
+        String image = request.getParameter("image");
+        int score = parseIntOrDefault(request.getParameter("score"), 0);
+        int bullsTamed = parseIntOrDefault(request.getParameter("bullsTamed"), 0);
+        int age = parseIntOrDefault(request.getParameter("age"), 0);
+        String region = request.getParameter("region");
+        int matches = parseIntOrDefault(request.getParameter("matches"), 0);
+
+        // Debugging: Log received values
+        System.out.println("Received Name: " + playerName);
+        System.out.println("Received Image: " + image);
+        System.out.println("Received Score: " + score);
+        System.out.println("Received Bulls Tamed: " + bullsTamed);
+        System.out.println("Received Age: " + age);
+        System.out.println("Received Region: " + region);
+        System.out.println("Received Matches: " + matches);
+
+        // Validate required fields
+        if (playerName == null || playerName.trim().isEmpty()) {
+            response.getWriter().write("Error: Player name cannot be null or empty");
+            return;
+        }
+
+        // Establish database connection and insert data
+        String jdbcUrl = "jdbc:mysql://localhost:3306/JallikattuDB";
+        String jdbcUser = "root";
+        String jdbcPassword = "Bharathi2004";
+
+        String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, matches) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Set values in PreparedStatement
+            stmt.setString(1, playerName);
+            stmt.setString(2, image);
+            stmt.setInt(3, score);
+            stmt.setInt(4, bullsTamed);
+            stmt.setInt(5, age);
+            stmt.setString(6, region);
+            stmt.setInt(7, matches);
+
+            int rowsInserted = stmt.executeUpdate();
+            if (rowsInserted > 0) {
+                response.getWriter().write("Success");
+            } else {
+                response.getWriter().write("Failed");
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().write("Error: " + e.getMessage());
+        }
+    }
+
+    // Utility method to safely parse integers with default values
+    private int parseIntOrDefault(String value, int defaultValue) {
+        try {
+            return (value != null && !value.trim().isEmpty()) ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
         }
     }
 }

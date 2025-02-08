@@ -17,4 +17,15 @@
         <url-pattern>/PlayerServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UpdatePlayerServlet</servlet-name>
+        <servlet-class>org.example.vaadivaasal_webapp.UpdatePlayerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdatePlayerServlet</servlet-name>
+        <url-pattern>/UpdatePlayerServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

@@ -1,0 +1,252 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for Rankings */
+.ranking-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Header Section */
+.ranking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ranking-header h1 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.ranking-header button {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ranking-header button:hover {
+    background: #b71c1c;
+    transform: scale(1.05);
+}
+
+/* Player Grid Layout */
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Player Card */
+.player-card {
+    background: linear-gradient(135deg, #ffffff, #f8f8f8);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, height 0.4s ease;
+    overflow: hidden;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Player Image */
+.player-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Name Styling */
+.player-card h2 {
+    font-size: 1.3rem;
+    margin: 5px 0;
+    font-weight: 700;
+    color: #444;
+}
+
+/* Basic Info */
+.player-card p {
+    font-size: 1rem;
+    margin: 4px 0;
+    color: #666;
+}
+
+/* Hidden Details */
+.hidden-details {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.4s ease;
+    width: 100%;
+}
+
+/* Hover Effect - Expand Card */
+.player-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    height: 320px;
+}
+
+/* Show hidden details on hover */
+.player-card:hover .hidden-details {
+    opacity: 1;
+    max-height: 320px;
+}
+
+/* Buttons inside Player Cards */
+.edit-btn {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.edit-btn:hover {
+    background: #0d47a1;
+}
+
+/* ADD & EDIT FORM - POPUP STYLES */
+.form-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Blur background when form appears */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Input Fields */
+.form-container input {
+    width: calc(100% - 12px);
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Input Focus Effect */
+.form-container input:focus {
+    border-color: #d32f2f;
+    outline: none;
+}
+
+/* Buttons */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.form-container button {
+    flex: 1;
+    background: #d32f2f;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.form-container button:hover {
+    background: #b71c1c;
+    transform: scale(1.05);
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    color: #888;
+}
+
+.close-btn:hover {
+    color: #d32f2f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .player-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .ranking-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ranking-header h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .ranking-header button {
+        margin-top: 10px;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+}
