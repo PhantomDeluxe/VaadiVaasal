@@ -20,7 +20,7 @@
     <!-- Add Player Form -->
     <div class="form-container" id="playerFormContainer">
         <form id="addPlayerForm">
-            <label for="playerNameInput">Name:</label>
+            <%--@declare id="playernationalityinput"--%><label for="playerNameInput">Name:</label>
             <input type="text" id="playerNameInput" name="name" required>
 
             <label for="playerImageInput">Image URL:</label>
@@ -38,6 +38,9 @@
             <label for="playerRegionInput">Region:</label>
             <input type="text" id="playerRegionInput" required>
 
+            <label for="playerNationalityInput">Nationality:</label>
+            <input type="text" id="playerNationalityInput" required>
+
             <label for="playerMatchesInput">Matches Played:</label>
             <input type="number" id="playerMatchesInput" required>
 
@@ -50,32 +53,19 @@
     </div>
 
     <!-- Edit Player Form -->
-    <div class="edit-form-container" id="editFormContainer">
+    <div id="editFormContainer" style="display: none;">
         <form id="editPlayerForm">
-            <h2>Edit Player</h2>
             <input type="hidden" id="editPlayerId">
-            <label for="editPlayerName">Name:</label>
-            <input type="text" id="editPlayerName" required>
+            <label>Name:</label> <input type="text" id="editPlayerName">
+            <label>Image URL:</label> <input type="text" id="editPlayerImage">
+            <label>Score:</label> <input type="number" id="editPlayerScore">
+            <label>Bulls Tamed:</label> <input type="number" id="editPlayerBullsTamed">
+            <label>Age:</label> <input type="number" id="editPlayerAge">
+            <label>Region:</label> <input type="text" id="editPlayerRegion">
+            <label>Nationality:</label> <input type="text" id="editPlayerNationality">
+            <label>Matches Played:</label> <input type="number" id="editPlayerMatches">
 
-            <label for="editPlayerImage">Image URL:</label>
-            <input type="text" id="editPlayerImage" required>
-
-            <label for="editPlayerScore">Score:</label>
-            <input type="number" id="editPlayerScore" required>
-
-            <label for="editPlayerBullsTamed">Bulls Tamed:</label>
-            <input type="number" id="editPlayerBullsTamed" required>
-
-            <label for="editPlayerAge">Age:</label>
-            <input type="number" id="editPlayerAge" required>
-
-            <label for="editPlayerRegion">Region:</label>
-            <input type="text" id="editPlayerRegion" required>
-
-            <label for="editPlayerMatches">Matches Played:</label>
-            <input type="number" id="editPlayerMatches" required>
-
-            <button type="submit">Save Changes</button>
+            <button type="button" onclick="submitEditPlayer()">Save Changes</button>
             <button type="button" id="cancelEdit">Cancel</button>
         </form>
     </div>

@@ -40,6 +40,7 @@ public class FetchPlayersServlet extends HttpServlet {
                 player.put("bullsTamed", rs.getInt("bullsTamed"));
                 player.put("age", rs.getInt("age"));
                 player.put("region", rs.getString("region"));
+                player.put("nationality", rs.getString("nationality"));
                 player.put("matches", rs.getInt("matches"));
                 playerList.add(player);
             }

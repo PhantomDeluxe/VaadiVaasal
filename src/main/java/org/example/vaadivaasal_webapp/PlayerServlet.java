@@ -32,6 +32,7 @@ public class PlayerServlet extends HttpServlet {
         int bullsTamed = parseIntOrDefault(request.getParameter("bullsTamed"), 0);
         int age = parseIntOrDefault(request.getParameter("age"), 0);
         String region = request.getParameter("region");
+        String nationality = request.getParameter("nationality");
         int matches = parseIntOrDefault(request.getParameter("matches"), 0);
 
         // Debugging: Log received values
@@ -41,6 +42,7 @@ public class PlayerServlet extends HttpServlet {
         System.out.println("Received Bulls Tamed: " + bullsTamed);
         System.out.println("Received Age: " + age);
         System.out.println("Received Region: " + region);
+        System.out.println("Received Nationality:" + nationality);
         System.out.println("Received Matches: " + matches);
 
         // Validate required fields
@@ -54,7 +56,7 @@ public class PlayerServlet extends HttpServlet {
         String jdbcUser = "root";
         String jdbcPassword = "Bharathi2004";
 
-        String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, matches) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, nationality, matches) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -66,7 +68,8 @@ public class PlayerServlet extends HttpServlet {
             stmt.setInt(4, bullsTamed);
             stmt.setInt(5, age);
             stmt.setString(6, region);
-            stmt.setInt(7, matches);
+            stmt.setString(7, nationality);
+            stmt.setInt(8, matches);
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
@@ -97,6 +100,7 @@ public class PlayerServlet extends HttpServlet {
         int bullsTamed = parseIntOrDefault(request.getParameter("bullsTamed"), 0);
         int age = parseIntOrDefault(request.getParameter("age"), 0);
         String region = request.getParameter("region");
+        String nationality = request.getParameter("nationality");
         int matches = parseIntOrDefault(request.getParameter("matches"), 0);
 
         // Debugging: Log received values
@@ -106,6 +110,7 @@ public class PlayerServlet extends HttpServlet {
         System.out.println("Received Bulls Tamed: " + bullsTamed);
         System.out.println("Received Age: " + age);
         System.out.println("Received Region: " + region);
+        System.out.println("Received Nationality:" + nationality);
         System.out.println("Received Matches: " + matches);
 
         // Validate required fields
@@ -119,7 +124,7 @@ public class PlayerServlet extends HttpServlet {
         String jdbcUser = "root";
         String jdbcPassword = "Bharathi2004";
 
-        String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, matches) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Players (name, image, score, bullsTamed, age, region, nationality, matches) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(jdbcUrl, jdbcUser, jdbcPassword);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -131,7 +136,8 @@ public class PlayerServlet extends HttpServlet {
             stmt.setInt(4, bullsTamed);
             stmt.setInt(5, age);
             stmt.setString(6, region);
-            stmt.setInt(7, matches);
+            stmt.setString(7, nationality);
+            stmt.setInt(8, matches);
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {

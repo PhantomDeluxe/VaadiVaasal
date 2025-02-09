@@ -40,7 +40,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -65,8 +65,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, height 0.4s ease;
-    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 300px;
     position: relative;
     display: flex;
@@ -112,18 +111,18 @@ body {
 .player-card:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    height: 320px;
+    height: 340px;
 }
 
 /* Show hidden details on hover */
 .player-card:hover .hidden-details {
     opacity: 1;
-    max-height: 320px;
+    max-height: 340px;
 }
 
 /* Buttons inside Player Cards */
 .edit-btn {
-    background: #1976d2;
+    background: rgba(137, 140, 244, 0.88);
     color: white;
     border: none;
     padding: 8px 16px;
@@ -136,7 +135,7 @@ body {
 }
 
 .edit-btn:hover {
-    background: #0d47a1;
+    background: #0a2245;
 }
 
 /* ADD & EDIT FORM - POPUP STYLES */
@@ -167,9 +166,9 @@ body {
     z-index: 999;
 }
 
-/* Input Fields */
+/* Fix form fields spacing */
 .form-container input {
-    width: calc(100% - 12px);
+    width: 100%;
     padding: 10px;
     margin: 8px 0;
     border: 1px solid #ddd;
@@ -178,13 +177,7 @@ body {
     transition: border-color 0.3s ease;
 }
 
-/* Input Focus Effect */
-.form-container input:focus {
-    border-color: #d32f2f;
-    outline: none;
-}
-
-/* Buttons */
+/* Form Buttons */
 .form-buttons {
     display: flex;
     justify-content: space-between;
@@ -193,37 +186,7 @@ body {
 
 .form-container button {
     flex: 1;
-    background: #d32f2f;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-weight: bold;
-    margin: 0 5px;
-}
-
-.form-container button:hover {
-    background: #b71c1c;
-    transform: scale(1.05);
-}
-
-/* Close Button */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: transparent;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-    color: #888;
-}
-
-.close-btn:hover {
-    color: #d32f2f;
+    margin: 5px;
 }
 
 /* Responsive Design */
@@ -235,11 +198,11 @@ body {
     .ranking-header {
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
     .ranking-header h1 {
         font-size: 1.5rem;
-        text-align: center;
     }
 
     .ranking-header button {
@@ -248,5 +211,12 @@ body {
 
     .form-container {
         width: 90%;
+    }
+
+    /* Form Button Group */
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 }

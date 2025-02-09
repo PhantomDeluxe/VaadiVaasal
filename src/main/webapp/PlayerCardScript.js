@@ -48,10 +48,11 @@ const renderGrid = () => {
                     <div class="hidden-details">
                         <p>Age: ${player.age}</p>
                         <p>Region: ${player.region}</p>
+                        <p>Nationality : ${player.nationality}</p>
                         <p>Matches Played: ${player.matches}</p>
                     </div>
                     
-                    <button class="edit-btn" onclick="editPlayer('${player.id}', '${player.name}', '${player.image}', '${player.score}', '${player.bullsTamed}', '${player.age}', '${player.region}', '${player.matches}')">Edit</button>
+                    <button class="edit-btn" onclick="editPlayer('${player.id}', '${player.name}', '${player.image}', '${player.score}', '${player.bullsTamed}', '${player.age}', '${player.region}', '${player.nationality}', '${player.matches}')">Edit</button>
                 `;
 
                 playerGrid.appendChild(card);
@@ -60,36 +61,55 @@ const renderGrid = () => {
         .catch(error => console.error("Error fetching players:", error));
 };
 
-// **Open the Edit Form and Populate Data**
-const editPlayer = (id, name, image, score, bullsTamed, age, region, matches) => {
-    document.getElementById("playerEditForm").style.display = "block";  // Show form
-    document.getElementById("playerIdInput").value = id;
-    document.getElementById("playerNameInput").value = name;
-    document.getElementById("playerImageInput").value = image;
-    document.getElementById("playerScoreInput").value = score;
-    document.getElementById("playerBullsTamedInput").value = bullsTamed;
-    document.getElementById("playerAgeInput").value = age;
-    document.getElementById("playerRegionInput").value = region;
-    document.getElementById("playerMatchesInput").value = matches;
+// Open the Edit Form and Populate Data
+// Open the Edit Form and Populate Data
+const editPlayer = (id, name, image, score, bullsTamed, age, region, nationality, matches) => {
+    console.log("🛠 Editing Player - ID:", id); // Debugging output
+
+    // Ensure the ID is correctly set before displaying the form
+    const idElement = document.getElementById("editPlayerId");
+    if (!idElement) {
+        console.error("❌ Error: ID input field not found!");
+        return;
+    }
+    idElement.value = id;
+
+    document.getElementById("editPlayerName").value = name;
+    document.getElementById("editPlayerImage").value = image;
+    document.getElementById("editPlayerScore").value = score;
+    document.getElementById("editPlayerBullsTamed").value = bullsTamed;
+    document.getElementById("editPlayerAge").value = age;
+    document.getElementById("editPlayerRegion").value = region;
+    document.getElementById("editPlayerNationality").value = nationality;
+    document.getElementById("editPlayerMatches").value = matches;
+
+    // Show the edit form
+    document.getElementById("editFormContainer").style.display = "block";
 };
 
-// **Submit Edited Player Details**
+
+// Submit Edited Player Details
 const submitEditPlayer = () => {
-    const id = document.getElementById("playerIdInput").value.trim();
-    if (!id) {
-        alert("Error: Player ID is missing!");
+    const idElement = document.getElementById("editPlayerId"); // Get ID element
+    if (!idElement || !idElement.value.trim()) {
+        console.error("❌ Error: Player ID is missing or not found!");
+        alert("Error: Player ID is missing.");
         return;
     }
 
+    const id = idElement.value.trim();  // Ensure ID is assigned correctly
+    console.log("✅ Submitting Edit - Player ID:", id); // Debugging
+
     const formData = new FormData();
     formData.append("id", id);
-    formData.append("name", document.getElementById("playerNameInput").value.trim());
-    formData.append("image", document.getElementById("playerImageInput").value.trim());
-    formData.append("score", document.getElementById("playerScoreInput").value.trim());
-    formData.append("bullsTamed", document.getElementById("playerBullsTamedInput").value.trim());
-    formData.append("age", document.getElementById("playerAgeInput").value.trim());
-    formData.append("region", document.getElementById("playerRegionInput").value.trim());
-    formData.append("matches", document.getElementById("playerMatchesInput").value.trim());
+    formData.append("name", document.getElementById("editPlayerName").value.trim());
+    formData.append("image", document.getElementById("editPlayerImage").value.trim());
+    formData.append("score", document.getElementById("editPlayerScore").value.trim());
+    formData.append("bullsTamed", document.getElementById("editPlayerBullsTamed").value.trim());
+    formData.append("age", document.getElementById("editPlayerAge").value.trim());
+    formData.append("region", document.getElementById("editPlayerRegion").value.trim());
+    formData.append("nationality", document.getElementById("editPlayerNationality").value.trim());
+    formData.append("matches", document.getElementById("editPlayerMatches").value.trim());
 
     fetch("UpdatePlayerServlet", {
         method: "POST",
@@ -98,19 +118,19 @@ const submitEditPlayer = () => {
         .then(response => response.text())
         .then(data => {
             if (data.trim() === "Success") {
-                alert("Player updated successfully!");
-                document.getElementById("playerEditForm").reset();
-                document.getElementById("playerEditForm").style.display = "none";
-                renderGrid(); // Reload player list
+                alert("✅ Player updated successfully!");
+                document.getElementById("editFormContainer").style.display = "none";
+                renderGrid(); // Refresh the player list
             } else {
-                console.error("Server Response:", data);
+                console.error("❌ Server Response:", data);
                 alert("Error: " + data);
             }
         })
-        .catch(error => console.error("Error updating player:", error));
+        .catch(error => console.error("❌ Error updating player:", error));
 };
 
-// **Show "Add Player" Form**
+
+// Show "Add Player" Form
 document.getElementById("addPlayerBtn").addEventListener("click", () => {
     document.getElementById("playerFormContainer").style.display = "block";
 });
@@ -126,6 +146,7 @@ document.getElementById("addPlayerForm").addEventListener("submit", (event) => {
     formData.append("bullsTamed", document.getElementById("playerBullsTamedInput").value.trim());
     formData.append("age", document.getElementById("playerAgeInput").value.trim());
     formData.append("region", document.getElementById("playerRegionInput").value.trim());
+    formData.append("nationality",  document.getElementById("playerNationalityInput").value.trim());
     formData.append("matches", document.getElementById("playerMatchesInput").value.trim());
 
     fetch("PlayerServlet", {
