@@ -9,7 +9,7 @@
 
     <servlet>
         <servlet-name>PlayerServlet</servlet-name>
-        <servlet-class>org.example.vaadivaasal_webapp.PlayerServlet</servlet-class>
+        <servlet-class>org.example.Player_Card.PlayerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>UpdatePlayerServlet</servlet-name>
-        <servlet-class>org.example.vaadivaasal_webapp.UpdatePlayerServlet</servlet-class>
+        <servlet-class>org.example.Player_Card.UpdatePlayerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

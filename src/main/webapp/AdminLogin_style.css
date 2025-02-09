@@ -1,0 +1,98 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: #0a2245;
+    color: darkgray;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar nav a {
+    color: darkgrey;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+/* Admin Auth Form */
+.admin-auth {
+    width: 300px;
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.admin-auth h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.admin-auth label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.admin-auth input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.admin-auth button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.admin-auth button:hover {
+    background: #0056b3;
+}
+
+/* Hide Registration Form Initially */
+.hidden {
+    display: none;
+}
+
+/* Links */
+.admin-auth p {
+    margin-top: 10px;
+}
+
+.admin-auth a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.admin-auth a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,114 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: #2d3436;
+    color: darkgrey;
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar nav a {
+    color: darkgray;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Sidebar Filters */
+.filters {
+    width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filters h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.filters label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.filters select {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+/* Fixtures Section */
+.fixtures {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.fixtures h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+/* Match Card */
+.match-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.match-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.match-info {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.match-status {
+    font-weight: bold;
+}
+
+.live {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .filters {
+        width: 100%;
+    }
+}
