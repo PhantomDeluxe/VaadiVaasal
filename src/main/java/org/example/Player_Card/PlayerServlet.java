@@ -1,4 +1,4 @@
-package org.example.vaadivaasal_webapp;
+package org.example.Player_Card;
 
 import java.io.IOException;
 import java.sql.Connection;

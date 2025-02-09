@@ -202,7 +202,7 @@
         <div class="feature">
             <h3>Matches & Scoreboard</h3>
             <p>Get real-time updates on matches and detailed scoreboards.</p>
-            <a href="matches_scoreboard.html">Learn More</a>
+            <a href="Matches_and_Scoreboard.jsp">Learn More</a>
         </div>
         <div class="feature">
             <h3>Bulls & Tamers</h3>
