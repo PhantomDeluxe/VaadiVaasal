@@ -27,5 +27,13 @@
         <url-pattern>/UpdatePlayerServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AdminDatabase</servlet-name>
+        <servlet-class>org.example.Match_Schedule.AdminDatabase</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDatabase</servlet-name>
+        <url-pattern>/AdminDatabase</url-pattern>
+    </servlet-mapping>
 
 </web-app>
