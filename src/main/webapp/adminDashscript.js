@@ -10,7 +10,7 @@ async function fetchPlayers() {
     }
 
     try {
-        let response = await fetch(`http://localhost:8080/VaadiVaasal_webapp_war_exploded/PlayersForScore?region=${encodeURIComponent(region)}`);
+        let response = await fetch(`/FetchPlayersServlet`);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch players. Status: ${response.status}`);

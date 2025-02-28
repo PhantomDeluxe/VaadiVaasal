@@ -34,7 +34,7 @@ public class PlayersForScore extends HttpServlet {
             }
 
             try (Connection conn = DatabaseConnection.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement("SELECT id, name FROM Players WHERE region = ?")) {
+                 PreparedStatement stmt = conn.prepareStatement("SELECT id, name FROM players WHERE region = ?")) {
 
                 stmt.setString(1, region);
                 try (ResultSet rs = stmt.executeQuery()) {
