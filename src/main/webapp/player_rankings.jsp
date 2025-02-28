@@ -14,10 +14,10 @@
     </div>
 
     <div class="player-grid" id="playerGrid">
-        <!-- Player cards will be dynamically inserted here -->
+        <!-- Players cards will be dynamically inserted here -->
     </div>
 
-    <!-- Add Player Form -->
+    <!-- Add Players Form -->
     <div class="form-container" id="playerFormContainer">
         <form id="addPlayerForm">
             <%--@declare id="playernationalityinput"--%><label for="playerNameInput">Name:</label>
@@ -47,12 +47,12 @@
             <button type="submit">Add Player</button>
         </form>
     </div>
-    <!-- Edit Player Form -->
+    <!-- Edit Players Form -->
     <div class="player-grid" id="playerGrid">
-        <!-- Player cards will be dynamically added here -->
+        <!-- Players cards will be dynamically added here -->
     </div>
 
-    <!-- Edit Player Form -->
+    <!-- Edit Players Form -->
     <div id="editFormContainer" style="display: none;">
         <form id="editPlayerForm">
             <input type="hidden" id="editPlayerId">

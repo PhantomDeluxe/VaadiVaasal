@@ -20,75 +20,89 @@ if (showLogin) {
     });
 }
 
-// Handle Login
+// ✅ Handle Login
 if (loginForm) {
     loginForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
 
         if (!email || !password) {
             alert("❌ Please enter both email and password.");
             return;
         }
 
-        // Send login data to servlet
-        let formData = new FormData();
+        console.log("DEBUG: Sending login request with email:", email);
+
+        let formData = new URLSearchParams();
         formData.append("email", email);
         formData.append("password", password);
 
-        fetch("AdminLoginServlet", { // Use the correct servlet name
+        fetch("/VaadiVaasal_webapp_war_exploded/AdminLoginServlet", { // ✅ Ensure correct servlet mapping
             method: "POST",
-            body: formData
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: formData.toString()
         })
             .then(response => response.text())
             .then(data => {
-                if (data.trim() === "Success") {
-                    alert("✅ Login successful!");
-                    window.location.href = "dashboard.html"; // Redirect after login
+                console.log("DEBUG: Server Response ->", data);
+
+                if (data.trim() === "redirect") {
+                    alert("✅ Login successful! Redirecting...");
+                    window.location.href = "/VaadiVaasal_webapp_war_exploded/adminDashboard.jsp"; // ✅ Redirect to dashboard
                 } else {
-                    console.error("❌ Server Response:", data);
-                    alert("Error: " + data);
+                    alert("🚫 Login failed: " + data);
                 }
             })
-            .catch(error => console.error("❌ Error logging in:", error));
+            .catch(error => {
+                console.error("❌ Login request failed:", error);
+                alert("⚠️ Server connection issue! Please try again.");
+            });
     });
 }
 
-// Handle Registration
+// ✅ Handle Registration
 if (registerForm) {
     registerForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        const name = document.getElementById("registerName").value;
-        const email = document.getElementById("registerEmail").value;
-        const password = document.getElementById("registerPassword").value;
+
+        const name = document.getElementById("registerName").value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
+        const password = document.getElementById("registerPassword").value.trim();
 
         if (!name || !email || !password) {
             alert("❌ All fields are required.");
             return;
         }
 
-        // Send data to the servlet
-        let formData = new FormData();
+        console.log("DEBUG: Sending registration request with email:", email);
+
+        let formData = new URLSearchParams();
         formData.append("name", name);
         formData.append("email", email);
         formData.append("password", password);
 
-        fetch("AdminDatabase", { // Correct servlet name
+        fetch("/VaadiVaasal_webapp_war_exploded/AdminDatabase", { // ✅ Ensure correct servlet mapping
             method: "POST",
-            body: formData
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: formData.toString()
         })
             .then(response => response.text())
             .then(data => {
+                console.log("DEBUG: Server Response ->", data);
+
                 if (data.trim() === "Success") {
-                    alert("✅ Registration successful!");
-                    registerForm.reset(); // Clear form after submission
-                    window.location.href = "login.html"; // Redirect to login page
+                    alert("✅ Registration successful! Redirecting to login...");
+                    registerForm.reset();
+                    window.location.href = "/VaadiVaasal_webapp_war_exploded/AdminLogin.jsp"; // ✅ Redirect to login
                 } else {
-                    console.error("❌ Server Response:", data);
-                    alert("Error: " + data);
+                    alert("🚫 Registration failed: " + data);
                 }
             })
-            .catch(error => console.error("❌ Error registering admin:", error));
+            .catch(error => {
+                console.error("❌ Registration request failed:", error);
+                alert("⚠️ Server connection issue! Please try again.");
+            });
     });
 }

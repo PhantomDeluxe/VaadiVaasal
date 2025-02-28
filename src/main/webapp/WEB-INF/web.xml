@@ -28,12 +28,23 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>AdminDatabase</servlet-name>
+        <servlet-name>AdminRegisterServlet</servlet-name>
         <servlet-class>org.example.Match_Schedule.AdminDatabase</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>AdminDatabase</servlet-name>
+        <servlet-name>AdminRegisterServlet</servlet-name>
         <url-pattern>/AdminDatabase</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminLogin</servlet-name>
+        <servlet-class>org.example.Match_Schedule.AdminLogin</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminLogin</servlet-name>
+        <url-pattern>/AdminLoginServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

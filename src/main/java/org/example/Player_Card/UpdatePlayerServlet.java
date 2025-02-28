@@ -48,7 +48,7 @@ public class UpdatePlayerServlet extends HttpServlet {
                                 "\", \"matches\": " + rs.getInt("matches") + " }";
                         response.getWriter().write(json);
                     } else {
-                        response.getWriter().write("{\"error\": \"Player not found\"}");
+                        response.getWriter().write("{\"error\": \"Players not found\"}");
                     }
                 }
             }
@@ -94,7 +94,7 @@ public class UpdatePlayerServlet extends HttpServlet {
 
         // ✅ Validate player name
         if (name == null || name.trim().isEmpty()) {
-            response.getWriter().write("Error: Player name cannot be null or empty");
+            response.getWriter().write("Error: Players name cannot be null or empty");
             return;
         }
 
@@ -120,7 +120,7 @@ public class UpdatePlayerServlet extends HttpServlet {
                 if (rowsUpdated > 0) {
                     response.getWriter().write("Success");
                 } else {
-                    response.getWriter().write("Failed: Player not found");
+                    response.getWriter().write("Failed: Players not found");
                 }
             }
         } catch (Exception e) {
