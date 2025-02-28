@@ -1,114 +1,102 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    background: #f4f4f4;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Navigation Bar */
-.navbar {
-    background: #2d3436;
-    color: darkgrey;
-    padding: 5px;
-    text-align: center;
+header {
+    background: #007bff;
+    color: white;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
 
-.navbar nav a {
-    color: darkgray;
-    margin: 0 15px;
+nav a {
+    color: white;
     text-decoration: none;
-    font-weight: 600;
+    margin: 0 10px;
+    font-weight: bold;
 }
 
 .container {
     display: flex;
+    margin: 20px;
     gap: 20px;
-    padding: 20px;
 }
 
-/* Sidebar Filters */
-.filters {
+.filter-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 250px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.filters h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.filters label {
+.filter-panel label {
     display: block;
-    font-weight: bold;
     margin-top: 10px;
+    font-weight: bold;
 }
 
-.filters select {
+.filter-panel select, .filter-panel input {
     width: 100%;
-    padding: 5px;
+    padding: 8px;
     margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-/* Fixtures Section */
-.fixtures {
-    flex: 1;
+.match-schedule {
+    flex-grow: 1;
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.fixtures h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-/* Match Card */
 .match-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: #fff;
     padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 10px 0;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.match-card img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.match-card h3 {
+    margin: 5px 0;
 }
 
-.match-info {
-    flex: 1;
-    margin-left: 15px;
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: white;
+    margin-top: 20px;
 }
 
-.match-status {
-    font-weight: bold;
+/* Dark Mode */
+.dark-mode {
+    background: #222;
+    color: #ddd;
 }
 
-.live {
-    color: red;
-    font-weight: bold;
+.dark-mode .match-card {
+    background: #333;
+    border-color: #ff9800;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
+.dark-mode .filter-panel {
+    background: #444;
+}
 
-    .filters {
-        width: 100%;
-    }
+.dark-mode footer {
+    background: #111;
 }

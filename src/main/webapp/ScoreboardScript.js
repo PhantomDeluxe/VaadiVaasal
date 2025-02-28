@@ -1,33 +1,49 @@
-// Sample Jallikattu Match Data
-const matches = [
-    { date: "Sun, 9 Feb 2025", team1: "Team A", team2: "Team B", score: "5 bulls tamed", status: "Live", img1: "team1.png", img2: "team2.png" },
-    { date: "Sun, 9 Feb 2025", team1: "Team C", team2: "Team D", score: "Match Abandoned", status: "Abandoned", img1: "team3.png", img2: "team4.png" },
-    { date: "Mon, 10 Feb 2025", team1: "Team E", team2: "Team F", score: "8 bulls tamed", status: "Completed", img1: "team5.png", img2: "team6.png" },
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const matches = [
+        { team: "Team A", format: "Traditional", series: "Championship", date: "March 10, 2025" },
+        { team: "Team B", format: "Modern", series: "Regional", date: "March 15, 2025" },
+        { team: "Team A", format: "Traditional", series: "Regional", date: "March 20, 2025" }
+    ];
 
-const fixturesList = document.getElementById("fixturesList");
+    const matchContainer = document.getElementById("matches");
+    const searchInput = document.getElementById("search");
+    const teamFilter = document.getElementById("team");
+    const formatFilter = document.getElementById("format");
+    const seriesFilter = document.getElementById("series");
+    const themeToggle = document.getElementById("theme-toggle");
 
-// Function to Load Matches
-function loadMatches() {
-    fixturesList.innerHTML = ""; // Clear existing data
+    function displayMatches() {
+        matchContainer.innerHTML = "";
+        const filteredMatches = matches.filter(match => {
+            return (teamFilter.value === "" || match.team === teamFilter.value) &&
+                (formatFilter.value === "" || match.format === formatFilter.value) &&
+                (seriesFilter.value === "" || match.series === seriesFilter.value) &&
+                (searchInput.value === "" || match.team.toLowerCase().includes(searchInput.value.toLowerCase()));
+        });
 
-    matches.forEach(match => {
-        const matchCard = document.createElement("div");
-        matchCard.classList.add("match-card");
+        if (filteredMatches.length === 0) {
+            matchContainer.innerHTML = "<p>No upcoming matches.</p>";
+            return;
+        }
 
-        matchCard.innerHTML = `
-            <img src="${match.img1}" alt="${match.team1}">
-            <div class="match-info">
-                <strong>${match.team1} vs ${match.team2}</strong>
-                <p>${match.date} | ${match.score}</p>
-                <p class="match-status ${match.status.toLowerCase()}">${match.status}</p>
-            </div>
-            <img src="${match.img2}" alt="${match.team2}">
-        `;
+        filteredMatches.forEach(match => {
+            const matchCard = document.createElement("div");
+            matchCard.classList.add("match-card");
+            matchCard.innerHTML = `<h3>${match.team} - ${match.format}</h3><p>${match.series} - ${match.date}</p>`;
+            matchContainer.appendChild(matchCard);
+        });
+    }
 
-        fixturesList.appendChild(matchCard);
+    searchInput.addEventListener("input", displayMatches);
+    teamFilter.addEventListener("change", displayMatches);
+    formatFilter.addEventListener("change", displayMatches);
+    seriesFilter.addEventListener("change", displayMatches);
+
+    // Dark Mode Toggle
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        themeToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
-}
 
-// Load Matches on Page Load
-document.addEventListener("DOMContentLoaded", loadMatches);
+    displayMatches();
+});

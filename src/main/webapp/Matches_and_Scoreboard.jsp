@@ -5,52 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jallikattu Fixtures</title>
     <link rel="stylesheet" href="ScoreboardStyle.css">
+    <script src="ScoreboardScript.js" defer></script>
 </head>
 <body>
-
-<header class="navbar">
+<header>
     <h1>Jallikattu Fixtures</h1>
     <nav>
         <a href="Jallikattu.jsp">Home</a>
         <a href="AdminLogin.jsp">Admin Portal</a>
     </nav>
+    <button id="theme-toggle">🌙 Dark Mode</button>
 </header>
 
 <div class="container">
-    <aside class="filters">
+    <aside class="filter-panel">
         <h2>Filter Fixtures</h2>
-        <label>Team:
-            <select id="teamFilter">
-                <option value="all">All Teams</option>
-                <option value="team1">Team 1</option>
-                <option value="team2">Team 2</option>
-            </select>
-        </label>
-        <label>Format:
-            <select id="formatFilter">
-                <option value="all">All Formats</option>
-                <option value="traditional">Traditional</option>
-                <option value="modern">Modern</option>
-            </select>
-        </label>
-        <label>Series Type:
-            <select id="seriesFilter">
-                <option value="all">All Series</option>
-                <option value="national">National</option>
-                <option value="regional">Regional</option>
-            </select>
-        </label>
+        <label for="search">Search:</label>
+        <input type="text" id="search" placeholder="Search matches...">
+
+        <label for="team">Team:</label>
+        <select id="team">
+            <option value="">All Teams</option>
+            <option value="Team A">Team A</option>
+            <option value="Team B">Team B</option>
+        </select>
+
+        <label for="format">Format:</label>
+        <select id="format">
+            <option value="">All Formats</option>
+            <option value="Traditional">Traditional</option>
+            <option value="Modern">Modern</option>
+        </select>
+
+        <label for="series">Series Type:</label>
+        <select id="series">
+            <option value="">All Series</option>
+            <option value="Championship">Championship</option>
+            <option value="Regional">Regional</option>
+        </select>
     </aside>
 
-    <main class="fixtures">
+    <main class="match-schedule">
         <h2>Upcoming Matches</h2>
-
-        <div id="fixturesList">
-            <!-- Matches will be loaded dynamically from JS -->
-        </div>
+        <div id="matches"></div>
     </main>
 </div>
 
-<script src="ScoreboardScript.js"></script>
+<footer>
+    <p>&copy; 2025 Jallikattu Fixtures. All rights reserved.</p>
+</footer>
 </body>
 </html>

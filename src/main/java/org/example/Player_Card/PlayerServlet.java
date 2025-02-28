@@ -47,7 +47,7 @@ public class PlayerServlet extends HttpServlet {
 
         // Validate required fields
         if (playerName == null || playerName.trim().isEmpty()) {
-            response.getWriter().write("Error: Player name cannot be null or empty");
+            response.getWriter().write("Error: Players name cannot be null or empty");
             return;
         }
 
@@ -115,7 +115,7 @@ public class PlayerServlet extends HttpServlet {
 
         // Validate required fields
         if (playerName == null || playerName.trim().isEmpty()) {
-            response.getWriter().write("Error: Player name cannot be null or empty");
+            response.getWriter().write("Error: Players name cannot be null or empty");
             return;
         }
 

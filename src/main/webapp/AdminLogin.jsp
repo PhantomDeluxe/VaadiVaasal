@@ -19,14 +19,14 @@
 <div class="container">
     <aside class="admin-auth">
         <h2>Admin Login</h2>
-        <form id="loginForm">
+        <form id="loginForm" action="AdminLoginServlet" method="POST">
             <label>Email:</label>
             <input type="email" id="loginEmail" required>
 
             <label>Password:</label>
             <input type="password" id="loginPassword" required>
 
-            <button type="submit">Login</button>
+            <button type="submit" onclick= window.location.href="adminDashboard.jsp">Login</button>
         </form>
 
         <p>Don't have an account? <a href="#" id="showRegister">Register here</a></p>
