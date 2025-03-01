@@ -10,7 +10,7 @@ async function fetchPlayers() {
     }
 
     try {
-        let response = await fetch(`/FetchPlayersServlet`);
+        let response = await fetch("http://localhost:8080/VaadiVaasal_webapp_war_exploded/PlayersForScore?region=" + region);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch players. Status: ${response.status}`);
@@ -39,7 +39,7 @@ async function fetchPlayers() {
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.error("Error fetching players:", error);
+        console.error("Error fetching players:" + error);
         errorMessage.textContent = `Failed to connect to server: ${error.message}`;
         errorMessage.style.display = "block";
     }
