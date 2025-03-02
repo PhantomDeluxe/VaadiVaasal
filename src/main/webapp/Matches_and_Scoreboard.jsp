@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jallikattu Fixtures</title>
     <link rel="stylesheet" href="ScoreboardStyle.css">
-    <script src="ScoreboardScript.js" defer></script>
 </head>
 <body>
 <header>
@@ -17,42 +16,22 @@
     <button id="theme-toggle">🌙 Dark Mode</button>
 </header>
 
-<div class="container">
-    <aside class="filter-panel">
-        <h2>Filter Fixtures</h2>
-        <label for="search">Search:</label>
-        <input type="text" id="search" placeholder="Search matches...">
+<div id="matchContainer"></div>
 
-        <label for="team">Team:</label>
-        <select id="team">
-            <option value="">All Teams</option>
-            <option value="Team A">Team A</option>
-            <option value="Team B">Team B</option>
-        </select>
+<h2>Add New Match</h2>
+<form id="addMatchForm">
+    <input type="text" id="venue" placeholder="Venue" required>
+    <input type="text" id="teams" placeholder="Teams" required>
+    <select id="status">
+        <option value="Upcoming">Upcoming</option>
+        <option value="Live">Live</option>
+        <option value="Completed">Completed</option>
+    </select>
+    <input type="date" id="date" required>
+    <input type="url" id="youtubeLink" placeholder="YouTube Link" required>
+    <button type="submit">Add Match</button>
+</form>
 
-        <label for="format">Format:</label>
-        <select id="format">
-            <option value="">All Formats</option>
-            <option value="Traditional">Traditional</option>
-            <option value="Modern">Modern</option>
-        </select>
-
-        <label for="series">Series Type:</label>
-        <select id="series">
-            <option value="">All Series</option>
-            <option value="Championship">Championship</option>
-            <option value="Regional">Regional</option>
-        </select>
-    </aside>
-
-    <main class="match-schedule">
-        <h2>Upcoming Matches</h2>
-        <div id="matches"></div>
-    </main>
-</div>
-
-<footer>
-    <p>&copy; 2025 Jallikattu Fixtures. All rights reserved.</p>
-</footer>
+<script src="ScoreboardScript.js"></script>
 </body>
 </html>
