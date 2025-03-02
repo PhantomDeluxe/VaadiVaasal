@@ -66,7 +66,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 300px;
+    min-height: 300px; /* Changed from height to min-height */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -111,13 +111,11 @@ body {
 .player-card:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    height: 340px;
 }
 
-/* Show hidden details on hover */
 .player-card:hover .hidden-details {
     opacity: 1;
-    max-height: 340px;
+    max-height: 200px; /* Fixed issue of sudden height change */
 }
 
 /* Buttons inside Players Cards */
@@ -212,11 +210,37 @@ body {
     .form-container {
         width: 90%;
     }
+}
 
-    /* Form Button Group */
-    .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+/* Dark Mode */
+.dark-mode {
+    background: #222;
+    color: #ddd;
+}
+
+.dark-mode .ranking-container {
+    background: #333;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .player-card {
+    background: #444;
+    color: #ddd;
+}
+
+.dark-mode .player-card h2 {
+    color: #fff;
+}
+
+.dark-mode .ranking-header button {
+    background: #ff9800;
+}
+
+.dark-mode .ranking-header button:hover {
+    background: #e67e22;
+}
+
+.dark-mode .form-container {
+    background: #444;
+    color: #ddd;
 }

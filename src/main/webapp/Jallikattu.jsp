@@ -207,7 +207,7 @@
         <div class="feature">
             <h3>Bulls & Tamers</h3>
             <p>Explore profiles of bulls and their tamers, including stats and history.</p>
-            <a href="bulls_tamers.html">Learn More</a>
+            <a href="Bulls_tamers.jsp">Learn More</a>
         </div>
     </div>
 </div>

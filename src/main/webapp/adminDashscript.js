@@ -39,7 +39,7 @@ async function fetchPlayers() {
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.error("Error fetching players:" + error);
+        console.error("Error fetching players:", error);
         errorMessage.textContent = `Failed to connect to server: ${error.message}`;
         errorMessage.style.display = "block";
     }

@@ -1,49 +1,85 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const matches = [
-        { team: "Team A", format: "Traditional", series: "Championship", date: "March 10, 2025" },
-        { team: "Team B", format: "Modern", series: "Regional", date: "March 15, 2025" },
-        { team: "Team A", format: "Traditional", series: "Regional", date: "March 20, 2025" }
+document.addEventListener("DOMContentLoaded", function () {
+    const matchContainer = document.getElementById("matchContainer");
+    const addMatchForm = document.getElementById("addMatchForm");
+
+    if (!matchContainer || !addMatchForm) {
+        console.error("Error: matchContainer or addMatchForm not found in the HTML.");
+        return;
+    }
+
+    let matches = [
+        {
+            venue: "Madurai",
+            teams: "Team A vs Team B",
+            status: "Live",
+            date: "2025-03-10",
+            youtubeLink: "https://www.youtube.com/watch?v=example1"
+        },
+        {
+            venue: "Trichy",
+            teams: "Team C vs Team D",
+            status: "Upcoming",
+            date: "2025-04-15",
+            youtubeLink: "https://www.youtube.com/watch?v=example2"
+        },
+        {
+            venue: "Pudukkottai",
+            teams: "Team E vs Team F",
+            status: "Completed",
+            date: "2025-02-28",
+            youtubeLink: "https://www.youtube.com/watch?v=example3"
+        }
     ];
 
-    const matchContainer = document.getElementById("matches");
-    const searchInput = document.getElementById("search");
-    const teamFilter = document.getElementById("team");
-    const formatFilter = document.getElementById("format");
-    const seriesFilter = document.getElementById("series");
-    const themeToggle = document.getElementById("theme-toggle");
-
-    function displayMatches() {
+    function renderMatches() {
         matchContainer.innerHTML = "";
-        const filteredMatches = matches.filter(match => {
-            return (teamFilter.value === "" || match.team === teamFilter.value) &&
-                (formatFilter.value === "" || match.format === formatFilter.value) &&
-                (seriesFilter.value === "" || match.series === seriesFilter.value) &&
-                (searchInput.value === "" || match.team.toLowerCase().includes(searchInput.value.toLowerCase()));
-        });
-
-        if (filteredMatches.length === 0) {
-            matchContainer.innerHTML = "<p>No upcoming matches.</p>";
-            return;
-        }
-
-        filteredMatches.forEach(match => {
+        matches.forEach(match => {
             const matchCard = document.createElement("div");
-            matchCard.classList.add("match-card");
-            matchCard.innerHTML = `<h3>${match.team} - ${match.format}</h3><p>${match.series} - ${match.date}</p>`;
+            matchCard.classList.add("match-card", match.status.toLowerCase());
+
+            matchCard.innerHTML = `
+                <h3>${match.venue}</h3>
+                <p><strong>Teams:</strong> ${match.teams}</p>
+                <p><strong>Status:</strong> <span class="${match.status.toLowerCase()}">${match.status}</span></p>
+                <p><strong>Date:</strong> ${match.date}</p>
+                <a href="${match.youtubeLink}" target="_blank">📺 Watch on YouTube</a>
+            `;
             matchContainer.appendChild(matchCard);
         });
     }
 
-    searchInput.addEventListener("input", displayMatches);
-    teamFilter.addEventListener("change", displayMatches);
-    formatFilter.addEventListener("change", displayMatches);
-    seriesFilter.addEventListener("change", displayMatches);
+    addMatchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    // Dark Mode Toggle
+        const venue = document.getElementById("venue");
+        const teams = document.getElementById("teams");
+        const status = document.getElementById("status");
+        const date = document.getElementById("date");
+        const youtubeLink = document.getElementById("youtubeLink");
+
+        if (!venue || !teams || !status || !date || !youtubeLink) {
+            console.error("Error: One or more input fields are missing.");
+            return;
+        }
+
+        const newMatch = {
+            venue: venue.value,
+            teams: teams.value,
+            status: status.value,
+            date: date.value,
+            youtubeLink: youtubeLink.value
+        };
+
+        matches.push(newMatch);
+        renderMatches();
+
+        addMatchForm.reset();
+    });
+
     themeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
         themeToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
     });
 
-    displayMatches();
+    renderMatches();
 });
